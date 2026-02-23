@@ -4,6 +4,8 @@
 #include <string>
 using namespace std;
 
+
+// Visitor represents student visiting DVC.
 struct Visitor {
     string name;
     string studentId;
@@ -18,8 +20,10 @@ int main() {
     cin >> count;
     cin.ignore();
 
+    //dynamic array
     Visitor* roster = new Visitor[count];
 
+    //dynamic array
     for (int i = 0; i < count; i++) {
         roster[i].workshops = nullptr;
         roster[i].nrWorkshops = 0;
@@ -43,24 +47,28 @@ int main() {
         cin >> roster[i].nrWorkshops;
         cin.ignore();
 
+        //// Allocate dynamic array
+
         if (roster[i].nrWorkshops > 0) {
             roster[i].workshops =
                 new string[roster[i].nrWorkshops];
 
             for (int j = 0; j < roster[i].nrWorkshops; j++) {
                 cout << "Workshop #" << j + 1 << ": ";
-                getline(cin, roster[i].workshops[j]);
+                getline(cin, roster[i].workshops[j]) ;
             }
         }
     
     }
 
-    cout << " Summary";
+    cout <<  "\n--- DVC Visitor Summary ---\n";
     for (int i = 0; i < count; i++) {
         cout << roster[i].name << "|"
              << roster[i].studentId <<"|"
              << roster[i].age << endl;
     }
 
+    //// Delete dynamic array
     delete[] roster;
     return 0;
+}
